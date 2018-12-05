@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frag_article_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -55,16 +56,18 @@
                         android:fontFamily="sans-serif-condensed"
                         android:lineSpacingMultiplier="0.9"
                         android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                        android:textColor="#fff"
+                        android:textColor="#FFFFFF"
                         android:textSize="@dimen/detail_title_text_size"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Title" />
 
                     <TextView
                         android:id="@+id/article_subtitle"
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#8fff" />
+                        android:textColor="#FFFFFF"
+                        tools:text="Subtitle" />
                 </LinearLayout>
 
                 <android.support.v7.widget.Toolbar
@@ -77,25 +80,38 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <ProgressBar
-            android:id="@+id/article_detail_progressBar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center" />
 
-        <TextView
-            android:id="@+id/article_body"
-            style="?android:attr/textAppearanceMedium"
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:autoLink="web"
-            android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
-            android:linksClickable="true"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:textColor="?android:textColorPrimary"
-            android:textColorLink="?colorAccent" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/article_detail_progressBar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:id="@+id/article_body"
+                    style="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:autoLink="web"
+                    android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
+                    android:linksClickable="true"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="?android:textColorPrimary"
+                    android:textColorLink="?colorAccent" />
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.FloatingActionButton

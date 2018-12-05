@@ -163,9 +163,7 @@ public class ArticleDetailActivity extends AppCompatActivity
         }
 
         titleTextView.setText(title);
-        titleTextView.setTextColor(mutedColor);
         articleSubtitleTextView.setText(author);
-        articleSubtitleTextView.setTextColor(mutedColor);
 
         Picasso.get().load(photo)
                 .into(mPhotoView, new Callback() {
