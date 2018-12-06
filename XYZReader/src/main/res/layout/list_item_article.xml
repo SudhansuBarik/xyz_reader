@@ -49,19 +49,6 @@
             android:textStyle="bold"
             tools:text="Title" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/article_subtitle"-->
-        <!--style="@style/TextAppearance.AppCompat.Body1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_above="@id/author_date_container"-->
-        <!--android:ellipsize="end"-->
-        <!--android:maxLines="2"-->
-        <!--android:paddingLeft="16dp"-->
-        <!--android:paddingRight="16dp"-->
-        <!--android:textColor="#000000"-->
-        <!--tools:text="Sub Title" />-->
-
         <LinearLayout
             android:id="@+id/author_date_container"
             android:layout_width="match_parent"

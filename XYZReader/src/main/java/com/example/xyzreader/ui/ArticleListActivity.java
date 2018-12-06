@@ -32,7 +32,6 @@ import com.example.xyzreader.utility.NetworkChangeReceiver;
 public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String TAG = ArticleListActivity.class.toString();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private static final String RECYCLER_VIEW_STATE_KEY = "RecyclerViewState";

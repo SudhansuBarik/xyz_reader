@@ -5,6 +5,7 @@ import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -60,13 +61,11 @@ public class ArticleDetailActivity extends AppCompatActivity
     ProgressBar progressBar;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.fab_swipe_to_top)
-    FloatingActionButton swipeToTop;
     @BindView(R.id.share_fab)
     FloatingActionButton share;
 
     private int mCurrentPostiion;
-    private String mCurrentImageTransisionName;
+    private String mCurrentImageTransisionName, title;
     private int mutedColor;
 
     @SuppressLint("HandlerLeak")
@@ -86,6 +85,7 @@ public class ArticleDetailActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
+        setSupportActionBar(detailToolbar);
 
         ButterKnife.bind(this);
 
@@ -98,13 +98,18 @@ public class ArticleDetailActivity extends AppCompatActivity
             mutedColor = intent.getIntExtra(MUTED_COLOR_VALUE, MUTED_COLOR);
         } else finish();
 
-        mPhotoView.setTransitionName(mCurrentImageTransisionName);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mPhotoView.setTransitionName(mCurrentImageTransisionName);
+        }
         progressBar.setVisibility(View.VISIBLE);
         bodyView.setVisibility(View.GONE);
         collapsingToolbarLayout.setContentScrimColor(mutedColor);
 
-        Window window = getWindow();
-        window.setStatusBarColor(mutedColor);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(mutedColor);
+        }
+
     }
 
     @Override
@@ -132,7 +137,7 @@ public class ArticleDetailActivity extends AppCompatActivity
             return;
         }
         cursor.moveToPosition(mCurrentPostiion);
-        final String title = cursor.getString(ArticleLoader.Query.TITLE);
+        title = cursor.getString(ArticleLoader.Query.TITLE);
 
         String author = Html.fromHtml(
                 DateUtils.getRelativeTimeSpanString(
